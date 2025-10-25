@@ -10,7 +10,6 @@ import org.gradle.kotlin.dsl.configure
 class BuildKonfigConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            "kspIosSimulatorArm64"(libs.findLibrary("androidx-room-compiler").get())
             with(pluginManager) {
                 apply("com.codingfeline.buildkonfig")
             }

@@ -1,7 +1,7 @@
 package com.yrmz.core.domain.util
 
 sealed interface DataError: Error {
-    enum class Remote {
+    enum class Remote: DataError {
         BAD_REQUEST,
         REQUEST_TIMEOUT,
         UNAUTHORIZED,
