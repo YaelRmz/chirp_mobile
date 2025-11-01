@@ -14,8 +14,8 @@ class CmpFeatureConventionPlugin : Plugin<Project> {
                 "commonMainImplementation"(project(":core:presentation"))
                 "commonMainImplementation"(project(":core:designsystem"))
 
-                "commonMainImplementation"(platform(libs.findLibrary("koin-boom").get()))
-                "androidMainImplementation"(platform(libs.findLibrary("koin-boom").get()))
+                "commonMainImplementation"(platform(libs.findLibrary("koin-bom").get()))
+                "androidMainImplementation"(platform(libs.findLibrary("koin-bom").get()))
 
                 "commonMainImplementation"(libs.findLibrary("koin-compose").get())
                 "commonMainImplementation"(libs.findLibrary("koin-compose-viewmodel").get())
