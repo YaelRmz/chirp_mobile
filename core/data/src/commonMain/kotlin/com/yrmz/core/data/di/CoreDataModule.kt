@@ -1,9 +1,11 @@
 package com.yrmz.core.data.di
 
+import com.yrmz.core.data.auth.DataStoreSessionStorage
 import com.yrmz.core.data.auth.KtorAuthService
 import com.yrmz.core.data.logging.KermitLogger
 import com.yrmz.core.data.networking.HttpClientFactory
 import com.yrmz.core.domain.auth.AuthService
+import com.yrmz.core.domain.auth.SessionStorage
 import com.yrmz.core.domain.logging.ChirpLogger
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -18,9 +20,9 @@ val coreDataModule = module {
     single<ChirpLogger> { KermitLogger }
 
     single {
-        HttpClientFactory(get()).create(get())
+        HttpClientFactory(get(), get()).create(get())
     }
-
     singleOf(::KtorAuthService) bind AuthService::class
+    singleOf(::DataStoreSessionStorage) bind SessionStorage::class
 
 }

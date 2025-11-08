@@ -11,6 +11,8 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
 
+            implementation(libs.core.splashscreen)
+
             implementation(libs.koin.android)
         }
         commonMain.dependencies {
@@ -19,7 +21,8 @@ kotlin {
             implementation(projects.core.designsystem)
             implementation(projects.core.presentation)
 
-            implementation(libs.jetbrains.compose.navigation     )
+            implementation(libs.jetbrains.compose.navigation)
+            implementation(libs.bundles.koin.common)
 
             implementation(projects.feature.auth.domain)
             implementation(projects.feature.auth.presentation)
