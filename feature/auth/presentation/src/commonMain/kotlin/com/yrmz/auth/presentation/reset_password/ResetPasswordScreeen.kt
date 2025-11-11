@@ -19,10 +19,10 @@ import chirp.feature.auth.presentation.generated.resources.submit
 import com.yrmz.core.designsystem.components.brand.ChirpBrandLogo
 import com.yrmz.core.designsystem.components.buttons.ChirpButton
 import com.yrmz.core.designsystem.components.layouts.ChirpAdaptativeFormLayout
+import com.yrmz.core.designsystem.components.layouts.ChirpSnackbarScaffold
 import com.yrmz.core.designsystem.components.textFields.ChirpPasswordTextField
 import com.yrmz.core.designsystem.theme.ChirpTheme
 import com.yrmz.core.designsystem.theme.extended
-import com.yrmz.core.domain.auth.AuthService
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -44,45 +44,47 @@ fun ResetPasswordScreen(
     state: ResetPasswordSate,
     onAction: (ResetPasswordAction) -> Unit,
 ) {
-    ChirpAdaptativeFormLayout(
-        headerText = stringResource(Res.string.set_new_password),
-        errorText = state.errorText?.asString(),
-        logo = {
-            ChirpBrandLogo()
-        },
-    ) {
-        ChirpPasswordTextField(
-            state = state.passwordTextState,
-            modifier = Modifier
-                .fillMaxWidth(),
-            placeholder = stringResource(Res.string.password),
-            title = stringResource(Res.string.password),
-            supportingText = stringResource(Res.string.password_hint),
-            isPasswordVisible = state.isPasswordVisible,
-            onToggleVisibilityClick = {
-                onAction(ResetPasswordAction.OnTogglePasswordVisibilityClick)
+    ChirpSnackbarScaffold {
+        ChirpAdaptativeFormLayout(
+            headerText = stringResource(Res.string.set_new_password),
+            errorText = state.errorText?.asString(),
+            logo = {
+                ChirpBrandLogo()
             },
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        ChirpButton(
-            text = stringResource(Res.string.submit),
-            onClick = {
-                onAction(ResetPasswordAction.OnSubmitClick)
-            },
-            modifier = Modifier
-                .fillMaxWidth(),
-            enabled = !state.isLoading && state.canSubmit,
-            isLoading = state.isLoading
-        )
-        if (state.isResetSuccessful) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = stringResource(Res.string.reset_password_successfully),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.extended.success,
+        ) {
+            ChirpPasswordTextField(
+                state = state.passwordTextState,
                 modifier = Modifier
                     .fillMaxWidth(),
+                placeholder = stringResource(Res.string.password),
+                title = stringResource(Res.string.password),
+                supportingText = stringResource(Res.string.password_hint),
+                isPasswordVisible = state.isPasswordVisible,
+                onToggleVisibilityClick = {
+                    onAction(ResetPasswordAction.OnTogglePasswordVisibilityClick)
+                },
             )
+            Spacer(modifier = Modifier.height(16.dp))
+            ChirpButton(
+                text = stringResource(Res.string.submit),
+                onClick = {
+                    onAction(ResetPasswordAction.OnSubmitClick)
+                },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                enabled = !state.isLoading && state.canSubmit,
+                isLoading = state.isLoading
+            )
+            if (state.isResetSuccessful) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = stringResource(Res.string.reset_password_successfully),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.extended.success,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                )
+            }
         }
     }
 }

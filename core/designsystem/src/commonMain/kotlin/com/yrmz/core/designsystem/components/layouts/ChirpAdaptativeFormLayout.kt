@@ -30,6 +30,7 @@ import com.yrmz.core.designsystem.components.brand.ChirpBrandLogo
 import com.yrmz.core.designsystem.theme.ChirpTheme
 import com.yrmz.core.designsystem.theme.extended
 import com.yrmz.core.presentation.util.DeviceConfiguration
+import com.yrmz.core.presentation.util.clearFocusOnTap
 import com.yrmz.core.presentation.util.currentDeviceConfiguration
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -52,6 +53,7 @@ fun ChirpAdaptativeFormLayout(
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             ChirpSurface(
                 modifier = modifier
+                    .clearFocusOnTap()
                     .consumeWindowInsets(WindowInsets.navigationBars)
                     .consumeWindowInsets(WindowInsets.displayCutout),
                 header = {
